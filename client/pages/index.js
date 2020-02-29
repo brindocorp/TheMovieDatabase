@@ -21,7 +21,7 @@ const Home = () => {
       </Head>
 
       <main>
-        <div className="container-fluid bg-image p-sm-0 p-md-5 ">
+        <div className="container-fluid bg-image p-0 p-md-5 ">
           <div className="row px-sm-1 px-3">
             <div className="col d-flex justify-content-between mt-5 ">
               <div className="div text-white logo-font-size d-flex">
@@ -29,12 +29,12 @@ const Home = () => {
                 <span> MOVIE</span>{" "}
                 <span className="font-weight-bold">BOX</span>
               </div>
-              <div className="div d-flex text-white">
-                <Button className="text-white" basic>
-                  <span className="text-white">Log in</span>
+              <div className="div d-flex text-white justify-content-between">
+                <Button basic color="white" inverted className="mr-2 mr-lg-3">
+                  Log in
                 </Button>
-                <Button className="text-white" color="red">
-                  <span className="text-white">Sign up</span>
+                <Button className="text-white " color="red">
+                  Sign up
                 </Button>
               </div>
             </div>
@@ -91,6 +91,9 @@ const Home = () => {
           }
           .bg-genre {
             font-size: 10px;
+          }
+          .logo-font-size {
+            font-size: 20px !important;
           }
         }
         .bg-genre {
