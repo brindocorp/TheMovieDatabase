@@ -25,9 +25,13 @@ const Home = () => {
           <div className="row">
             <div className="col d-flex justify-content-between">
               <div className="div text-white"> THE MOVIEBOX</div>
-              <div className="div d-flex">
-                <Button className="">Log in</Button>
-                <Button className="">Sign Up</Button>
+              <div className="div d-flex text-white">
+                <Button className="text-white" basic>
+                  <span className="text-white">Log in</span>
+                </Button>
+                <Button className="text-white" basic>
+                  <span className="text-white">Log in</span>
+                </Button>
               </div>
             </div>
           </div>
