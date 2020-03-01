@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const data = require('./config')
 
 const config = require('../config/app')
 // console.log(config)
