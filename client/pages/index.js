@@ -90,15 +90,15 @@ const Home = () => {
                 <div className="col review-col">
                   <div className="div text-white bg-review  p-3 ">
                     <div>
-                      {" "}
-                      Rating
-                      <span className="small bg-rating-text">
-                        {" "}
+                      <span className="d-none d-lg-block">Rating</span>
+                      <span className="small bg-rating-text d-none d-lg-block">
                         based on 1000 reviews
                       </span>
                       <div className="d-flex">
-                        {" "}
-                        <StarComponent rate={2.4} size={"10px"} />{" "}
+                        <template className="d-none d-lg-block">
+                          <StarComponent rate={2.4} size={"10px"} />
+                        </template>
+
                         <span className="m-auto small p-1">2.4</span>
                       </div>
                     </div>
@@ -111,80 +111,84 @@ const Home = () => {
         {
           //section to display movies
         }
-        <div className="container mx-1 mx-lg-5">
-          <div className="row ">
-            <div className="col">
-              <Nav tabs className="d-flex justify-content-between pt-3">
-                <template className="d-flex ">
-                  <NavItem>
-                    <NavLink
-                      className={classnames({ active: activeTab === "1" })}
-                      onClick={() => {
-                        toggle("1");
-                      }}
-                    >
-                      Trending
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink
-                      className={classnames({ active: activeTab === "2" })}
-                      onClick={() => {
-                        toggle("2");
-                      }}
-                    >
-                      Top Rated
-                    </NavLink>
-                  </NavItem>
-                  <NavItem>
-                    <NavLink
-                      className={classnames({ active: activeTab === "3" })}
-                      onClick={() => {
-                        toggle("3");
-                      }}
-                    >
-                      Top Rated
-                    </NavLink>
-                  </NavItem>
+        <section className="section-trend">
+          <div className="container mx-1 mx-lg-5">
+            <div className="row ">
+              <div className="col">
+                <Nav tabs className="d-flex justify-content-between pt-3">
+                  <template className="d-flex ">
+                    <NavItem>
+                      <NavLink
+                        className={classnames({ active: activeTab === "1" })}
+                        onClick={() => {
+                          toggle("1");
+                        }}
+                      >
+                        Trending
+                      </NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink
+                        className={classnames({ active: activeTab === "2" })}
+                        onClick={() => {
+                          toggle("2");
+                        }}
+                      >
+                        Top Rated
+                      </NavLink>
+                    </NavItem>
+                    <NavItem>
+                      <NavLink
+                        className={classnames({ active: activeTab === "3" })}
+                        onClick={() => {
+                          toggle("3");
+                        }}
+                      >
+                        Top Rated
+                      </NavLink>
+                    </NavItem>
 
-                  <NavItem className="p-0">
-                    <NavLink
-                      className={classnames({ active: activeTab === "4" })}
-                      onClick={() => {
-                        toggle("4");
-                      }}
-                    >
-                      Top Rated
-                    </NavLink>
-                  </NavItem>
-                </template>
+                    <NavItem className="p-0">
+                      <NavLink
+                        className={classnames({ active: activeTab === "4" })}
+                        onClick={() => {
+                          toggle("4");
+                        }}
+                      >
+                        Top Rated
+                      </NavLink>
+                    </NavItem>
+                  </template>
 
-                <div>
-                  <span className="text-black">far</span>
-                </div>
-              </Nav>
-              <TabContent activeTab={activeTab}>
-                <TabPane tabId="1">
-                  <Row>
-                    {[1, 2, 3, 4].map(value => {
-                      return (
-                        <Col sm="3" key={value}>
-                          <MovieCard />
-                        </Col>
-                      );
-                    })}
-                  </Row>
-                </TabPane>
-                <TabPane tabId="2">
-                  <Row>
-                    <Col sm="6"></Col>
-                    <Col sm="6"></Col>
-                  </Row>
-                </TabPane>
-              </TabContent>
+                  <div>
+                    <span className="text-black">far</span>
+                  </div>
+                </Nav>
+                <TabContent activeTab={activeTab}>
+                  <TabPane tabId="1">
+                    <div className="container-fluid ">
+                      <div className="row">
+                        {[1, 2, 3, 4].map(value => {
+                          return (
+                            <div className="col-12 col-md-3 my-1">
+                              <MovieCard />
+                            </div>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </TabPane>
+                  <TabPane tabId="2">
+                    <Row>
+                      <Col sm="6"></Col>
+                      <Col sm="6"></Col>
+                    </Row>
+                  </TabPane>
+                </TabContent>
+              </div>
             </div>
           </div>
-        </div>
+        </section>
       </main>
 
       <style jsx global>{`
@@ -254,6 +258,9 @@ const Home = () => {
           justify-content: flex-end;
           height: fit-content;
           align-self: flex-end;
+        }
+        .section-trend {
+          background: #5b4b5a0f;
         }
         .nav-tabs .nav-item.show .nav-link,
         .nav-tabs .nav-link.active {
