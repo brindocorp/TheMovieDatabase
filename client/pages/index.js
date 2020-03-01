@@ -1,18 +1,29 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Head from "next/head";
-
+import {
+  TabContent,
+  TabPane,
+  Nav,
+  NavItem,
+  NavLink,
+  Card,
+  CardTitle,
+  CardText,
+  Row,
+  Col
+} from "reactstrap";
+import classnames from "classnames";
 import { Button } from "semantic-ui-react";
+import StarComponent from "../components/StarComponent";
+import MovieCard from "../components/MovieCards";
 
 const Home = () => {
-  const [activeItem, setActiveItem] = useState("HOME");
-  const [isOpen, setIsOpen] = useState(false);
-  function handleItemClick(e, { name }) {
-    setActiveItem(name);
-  }
-  function toggle() {
-    setIsOpen(!isOpen);
-  }
+  const [activeTab, setActiveTab] = useState("1");
+
+  const toggle = tab => {
+    if (activeTab !== tab) setActiveTab(tab);
+  };
 
   return (
     <div>
@@ -21,61 +32,156 @@ const Home = () => {
       </Head>
 
       <main>
-        <div className="container-fluid bg-image p-0 p-md-5 ">
-          <div className="row px-sm-1 px-3">
-            <div className="col d-flex justify-content-between mt-5 ">
-              <div className="div text-white logo-font-size d-flex">
-                {" "}
-                <span> MOVIE</span>{" "}
-                <span className="font-weight-bold">BOX</span>
+        <div className="bg-grad">
+          <div className="container-fluid bg-image p-0 p-md-5 ">
+            <div className="row px-sm-1 px-3">
+              <div className="col d-flex justify-content-between mt-3 ">
+                <div className="div text-white logo-font-size d-flex">
+                  {" "}
+                  <span> MOVIE</span>{" "}
+                  <span className="font-weight-bold">BOX</span>
+                </div>
+                <div className="div d-flex text-white justify-content-between">
+                  <Button basic inverted className="mr-2 mr-lg-3">
+                    Log in
+                  </Button>
+                  <Button className="text-white " color="red">
+                    Sign up
+                  </Button>
+                </div>
               </div>
-              <div className="div d-flex text-white justify-content-between">
-                <Button basic color="white" inverted className="mr-2 mr-lg-3">
-                  Log in
-                </Button>
-                <Button className="text-white " color="red">
-                  Sign up
-                </Button>
+            </div>
+            <div className="row px-3 mb-4 mt-5 d-flex">
+              <div className="col d-flex justify-content-between ">
+                <div className="div text-white logo-font-size ">
+                  {" "}
+                  <p className="font-weight-bolder bg-title my-auto">
+                    {" "}
+                    WRATH OF THE TITANS
+                  </p>
+                  <div className="div text-white">
+                    <span className="text-white small mr-2 bg-genre">
+                      Fantasy
+                    </span>
+                    <span className="text-white small mr-2 bg-genre">
+                      Fantasy
+                    </span>
+                    <span className="text-white small mr-2 bg-genre">
+                      Fantasy
+                    </span>
+
+                    <span className="text-white small mr-2 bg-genre">
+                      Duration : 1hr 30mins
+                    </span>
+                  </div>
+                  <div>
+                    <Button className="text-white mr-3" color="red">
+                      <span className="text-white">Watch Movie</span>
+                    </Button>
+
+                    <Button basic inverted content="View Info" />
+
+                    <Button className="text-white mr-3" inverted basic>
+                      <span className="text-white">Add To WishList</span>
+                    </Button>
+                  </div>
+                </div>
+
+                <div className="col review-col">
+                  <div className="div text-white bg-review  p-3 ">
+                    <div>
+                      {" "}
+                      Rating
+                      <span className="small bg-rating-text">
+                        {" "}
+                        based on 1000 reviews
+                      </span>
+                      <div className="d-flex">
+                        {" "}
+                        <StarComponent rate={2.4} size={"10px"} />{" "}
+                        <span className="m-auto small p-1">2.4</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
-          <div className="row px-3 mb-4">
-            <div className="col d-flex justify-content-between mt-5 ">
-              <div className="div text-white logo-font-size ">
-                {" "}
-                <p className="font-weight-bolder bg-title my-auto">
-                  {" "}
-                  WRATH OF THE TITANS
-                </p>
-                <div className="div text-white">
-                  <span className="text-white small mr-2 bg-genre">
-                    Fantasy
-                  </span>
-                  <span className="text-white small mr-2 bg-genre">
-                    Fantasy
-                  </span>
-                  <span className="text-white small mr-2 bg-genre">
-                    Fantasy
-                  </span>
+        </div>
+        {
+          //section to display movies
+        }
+        <div className="container mx-1 mx-lg-5">
+          <div className="row ">
+            <div className="col">
+              <Nav tabs className="d-flex justify-content-between pt-3">
+                <template className="d-flex ">
+                  <NavItem>
+                    <NavLink
+                      className={classnames({ active: activeTab === "1" })}
+                      onClick={() => {
+                        toggle("1");
+                      }}
+                    >
+                      Trending
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink
+                      className={classnames({ active: activeTab === "2" })}
+                      onClick={() => {
+                        toggle("2");
+                      }}
+                    >
+                      Top Rated
+                    </NavLink>
+                  </NavItem>
+                  <NavItem>
+                    <NavLink
+                      className={classnames({ active: activeTab === "3" })}
+                      onClick={() => {
+                        toggle("3");
+                      }}
+                    >
+                      Top Rated
+                    </NavLink>
+                  </NavItem>
 
-                  <span className="text-white small mr-2 bg-genre">
-                    Duration : 1hr 30mins
-                  </span>
-                </div>
+                  <NavItem className="p-0">
+                    <NavLink
+                      className={classnames({ active: activeTab === "4" })}
+                      onClick={() => {
+                        toggle("4");
+                      }}
+                    >
+                      Top Rated
+                    </NavLink>
+                  </NavItem>
+                </template>
+
                 <div>
-                  <Button className="text-white mr-3" color="red">
-                    <span className="text-white">Watch Movie</span>
-                  </Button>
-
-                  <Button basic inverted content="View Info" />
-
-                  <Button className="text-white mr-3" inverted basic>
-                    <span className="text-white">Add To WishList</span>
-                  </Button>
+                  <span className="text-black">far</span>
                 </div>
-              </div>
-
-              <div className="div d-flex text-white"></div>
+              </Nav>
+              <TabContent activeTab={activeTab}>
+                <TabPane tabId="1">
+                  <Row>
+                    {[1, 2, 3, 4].map(value => {
+                      return (
+                        <Col sm="3" key={value}>
+                          <MovieCard />
+                        </Col>
+                      );
+                    })}
+                  </Row>
+                </TabPane>
+                <TabPane tabId="2">
+                  <Row>
+                    <Col sm="6"></Col>
+                    <Col sm="6"></Col>
+                  </Row>
+                </TabPane>
+              </TabContent>
             </div>
           </div>
         </div>
@@ -100,13 +206,39 @@ const Home = () => {
           opacity: 0.9;
           font-weight: 800;
         }
+
+        .bg-grad::before {
+          /* content: '', */
+          background: linear-gradient(
+            0deg,
+            rgba(79, 79, 79, 0.6),
+            rgba(79, 79, 79, 0.6)
+          );
+          content: "";
+          height: auto;
+          min-height: 80vh;
+          position: absolute;
+          top: 0px;
+          // width: 380px;
+          width: -webkit-fill-available;
+          opacity: 0.3;
+        }
         .bg-image {
           background: url("/cinema_bg.jpg");
-          min-height: 100vh;
+          height: auto;
+          min-height: 80vh;
           background-size: cover;
           display: flex;
           flex-direction: column;
           justify-content: space-between;
+        }
+        .bg-review {
+          border: 1px solid #fff;
+          clear: none;
+          float: right;
+        }
+        .bg-rating-text {
+          opacity: 0.9;
         }
         .bg-title {
           font-size: 35px;
@@ -114,6 +246,24 @@ const Home = () => {
         }
         .logo-font-size {
           font-size: 2rem;
+        }
+        .review-col {
+          /* clear: both; */
+          display: flex;
+          /* padding-top: 80px; */
+          justify-content: flex-end;
+          height: fit-content;
+          align-self: flex-end;
+        }
+        .nav-tabs .nav-item.show .nav-link,
+        .nav-tabs .nav-link.active {
+          /* color: #495057; */
+          background-color: transparent !important;
+          // border-color: transparent !important;
+          border-bottom: 2px solid red;
+          border-top: none;
+          border-left: none;
+          border-right: none;
         }
       `}</style>
     </div>
