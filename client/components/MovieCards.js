@@ -3,12 +3,12 @@ import React from "react";
 
 const MovieCard = () => (
   <div>
-    <div className="row mx-1">
+    <div className="col px-1 ">
       <figure
-        className="ti-grid-img width-400 bg-cover position-bg"
+        className="ti-grid-img width-400 bg-cover"
         style={{
           background:
-            'url("/cinema_bg2.jpg");height: 300px;width: 300px;background-size: cover; margin:0'
+            'url("/cinema_bg2.jpg");height: 300px; background-size: auto;width: -webkit-fill-available; background-repeat:round; margin:0'
         }}
       ></figure>
 
