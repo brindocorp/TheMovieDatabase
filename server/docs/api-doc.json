@@ -1,0 +1,236 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "MovieStream API",
+        "description": "MOVIEDATABASE API for the WebApp and MobileApp.",
+        "version": "1.0.0"
+    },
+    "basePath": "/api/v1",
+    "schemes": [
+        "https"
+    ],
+    "securityDefinitions": {
+        "APIKeyHeader": {
+            "type": "Bearer Token",
+            "in": "header",
+            "name": "authorization"
+        }
+    },
+    "paths": {
+        "/login": {
+            "post": {
+                "summary": "Authenticates User.",
+                "description": "Authenticates and generates auth token for the user's session.",
+                "tags": [
+                    "Authentication"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "data",
+                        "description": "The user data to authenticate.",
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "email",
+                                "password"
+                            ],
+                            "properties": {
+                                "email": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "user authenticated"
+                    },
+                    "404": {
+                        "description": "user not found"
+                    }
+                }
+            }
+        },
+        "/register": {
+            "post": {
+                "summary": "Creates New User's Account.",
+                "description": "Creates a new account for new user and returns generated auth token for the user's session.",
+                "tags": [
+                    "Authentication"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "consumes": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "data",
+                        "description": "Data parameters needed to create account.",
+                        "schema": {
+                            "type": "object",
+                            "required": [
+                                "name",
+                                "email",
+                                "password"
+                            ],
+                            "properties": {
+                                "name": {
+                                    "type": "string"
+                                },
+                                "email": {
+                                    "type": "string"
+                                },
+                                "password": {
+                                    "type": "string"
+                                }
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "user authenticated"
+                    }
+                }
+            }
+        },
+        "/profile": {
+            "get": {
+                "summary": "Fetch User's Data.",
+                "description": "It Fetches the Authenticated User's Data.",
+                "security": [
+                    {
+                        "APIKeyHeader": [],
+                        "APIKeyBody": []
+                    }
+                ],
+                "operationId": "getUser",
+                "tags": [
+                    "User"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "schema": {
+                            "$ref": "#/definitions/User"
+                        }
+                    }
+                }
+            }
+        },
+        "/logout": {
+            "post": {
+                "summary": "Logs out User.",
+                "description": "logouts user current session.",
+                "security": [
+                    {
+                        "APIKeyHeader": [],
+                        "APIKeyBody": []
+                    }
+                ],
+                "tags": [
+                    "Authentication"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        },
+        "/logout/all": {
+            "post": {
+                "summary": "Logs out User from all Devices.",
+                "description": "logouts user all devices session.",
+                "security": [
+                    {
+                        "APIKeyHeader": [],
+                        "APIKeyBody": []
+                    }
+                ],
+                "tags": [
+                    "Authentication"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "200": {
+                        "description": "success"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "User": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "email": {
+                    "type": "string"
+                },
+                "favourites": {
+                    "type": "object"
+                },
+                "playlist": {
+                    "type": "object"
+                }
+            },
+            "required": [
+                "id",
+                "name",
+                "email",
+                "playlist"
+            ]
+        },
+        "Song": {
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "integer"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "artist": {
+                    "type": "object"
+                },
+                "url": {
+                    "type": "string"
+                }
+            },
+            "required": [
+                "id",
+                "title",
+                "artist",
+                "url"
+            ]
+        }
+    }
+}
