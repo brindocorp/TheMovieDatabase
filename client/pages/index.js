@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Head from "next/head";
+import Default from "../layout/Default";
 import {
   TabContent,
   TabPane,
@@ -31,26 +32,9 @@ const Home = () => {
         <title>Home</title>
       </Head>
 
-      <main>
+      <Default>
         <div className="bg-grad">
           <div className="container-fluid bg-image p-0 p-md-5 ">
-            <div className="row px-sm-1 px-3">
-              <div className="col d-flex justify-content-between mt-3 ">
-                <div className="div text-white logo-font-size d-flex">
-                  {" "}
-                  <span> MOVIE</span>{" "}
-                  <span className="font-weight-bold">BOX</span>
-                </div>
-                <div className="div d-flex text-white justify-content-between">
-                  <Button basic inverted className="mr-2 mr-lg-3">
-                    Log in
-                  </Button>
-                  <Button className="text-white " color="red">
-                    Sign up
-                  </Button>
-                </div>
-              </div>
-            </div>
             <div className="row px-3 mb-4 mt-5 d-flex">
               <div className="col d-flex justify-content-between ">
                 <div className="div text-white logo-font-size ">
@@ -70,18 +54,18 @@ const Home = () => {
                       Fantasy
                     </span>
 
-                    <span className="text-white small mr-2 bg-genre">
+                    <span className="text-white small m=2 bg-genre">
                       Duration : 1hr 30mins
                     </span>
                   </div>
                   <div>
-                    <Button className="text-white mr-3" color="red">
+                    <Button className="text-white m-2" color="red">
                       <span className="text-white">Watch Movie</span>
                     </Button>
 
                     <Button basic inverted content="View Info" />
 
-                    <Button className="text-white mr-3" inverted basic>
+                    <Button className="text-white m-2" inverted basic>
                       <span className="text-white">Add To WishList</span>
                     </Button>
                   </div>
@@ -112,7 +96,7 @@ const Home = () => {
           //section to display movies
         }
         <section className="section-trend">
-          <div className="container mx-1 mx-lg-5">
+          <div className="container ">
             <div className="row ">
               <div className="col">
                 <Nav tabs className="d-flex justify-content-between pt-3">
@@ -161,16 +145,21 @@ const Home = () => {
                   </template>
 
                   <div>
-                    <span className="text-black">far</span>
+                    {
+                      // <span className="text-black">far</span>
+                    }
                   </div>
                 </Nav>
                 <TabContent activeTab={activeTab}>
                   <TabPane tabId="1">
-                    <div className="container-fluid ">
+                    <div className="container-fluid py-5">
                       <div className="row">
-                        {[1, 2, 3, 4].map(value => {
+                        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(value => {
                           return (
-                            <div className="col-12 col-md-3 my-1">
+                            <div
+                              className="col-12 col-md-4 col-lg-4 my-1"
+                              key={value}
+                            >
                               <MovieCard />
                             </div>
                           );
@@ -189,7 +178,7 @@ const Home = () => {
             </div>
           </div>
         </section>
-      </main>
+      </Default>
 
       <style jsx global>{`
         @media (max-width: 768px) {
@@ -211,6 +200,9 @@ const Home = () => {
           font-weight: 800;
         }
 
+        .bg-grad {
+          width: "-webkit-fill-available";
+        }
         .bg-grad::before {
           /* content: '', */
           background: linear-gradient(
@@ -233,8 +225,10 @@ const Home = () => {
           min-height: 80vh;
           background-size: cover;
           display: flex;
-          flex-direction: column;
+
           justify-content: space-between;
+
+          flex-direction: column-reverse;
         }
         .bg-review {
           border: 1px solid #fff;

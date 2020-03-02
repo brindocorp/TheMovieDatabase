@@ -1,4 +1,5 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
+// import Link from "next/link";
 // import "semantic-ui-css/semantic.min.css";
 
 class MyDocument extends Document {
@@ -11,10 +12,6 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link
-            rel="stylesheet"
-            href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"
-          ></link>
           <link rel="stylesheet" href="/semantic/semantic.min.css" />
         </Head>
         <body>

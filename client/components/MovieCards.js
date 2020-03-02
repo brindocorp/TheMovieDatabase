@@ -1,17 +1,24 @@
 import React from "react";
-// import Link from "next/link";
+import Link from "next/link";
 
 const MovieCard = () => (
   <div>
-    <div className="col px-1 ">
-      <figure
-        className="ti-grid-img width-400 bg-cover"
-        style={{
-          background:
-            'url("/cinema_bg2.jpg");height: 300px; background-size: auto;width: -webkit-fill-available; background-repeat:round; margin:0'
-        }}
-      ></figure>
-
+    <div className=" ">
+      <Link href={`movie/${1}`}>
+        <a>
+          <figure
+            className=" width-400 bg-cover"
+            style={{
+              background: `url("/cinema_bg2.jpg")`,
+              height: "300px",
+              "background-size": "auto",
+              width: "-webkit-fill-available",
+              "background-repeat": "round",
+              margin: 0
+            }}
+          ></figure>
+        </a>
+      </Link>
       <div className="d-flex w-100 movie-card-bottom p-2 justify-content-between">
         <div>
           <p className="lead font-weight-bold"> Logan</p>
@@ -24,8 +31,13 @@ const MovieCard = () => (
       </div>
     </div>
     <style jsx>{`
+      .bg-cover {
+      }
+      .bg-url {
+      }
       .movie-card-bottom {
         border: 1px solid grey;
+        background: white;
       }
 
       .movie-card-genre {
