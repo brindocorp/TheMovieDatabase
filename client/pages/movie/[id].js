@@ -1,10 +1,13 @@
 import React from "react";
 // import Link from "next/link";
-
-const Default = props => (
-  <span>
+import Default from "../../layout/Default";
+const MovieDetail = props => (
+  <div>
+    <Default bg>
+      <div className="py-5"></div>
+    </Default>
     <style jsx>{``}</style>
-  </span>
+  </div>
 );
 
-export default Default;
+export default MovieDetail;
