@@ -218,6 +218,15 @@ const Home = () => {
           // width: 380px;
           width: -webkit-fill-available;
           opacity: 0.3;
+          //
+          // position: absolute;
+          // top: 0;
+          // left: 0;
+          // opacity: 0.5;
+          // display: block;
+          // width: 100%;
+          // height: 100%;
+          background: linear-gradient(180deg, #ae276d 0%, #000000 100%);
         }
         .bg-image {
           background: url("/cinema_bg.jpg");

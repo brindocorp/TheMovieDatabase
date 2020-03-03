@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import Navbar from "../components/Navbar";
 const Default = props => (
   <span>
-    <Navbar />
+    <Navbar bg={props.bg ? true : false} />
     {props.children}
     <Footer />
     <style jsx>{``}</style>

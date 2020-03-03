@@ -1,4 +1,49 @@
-$red: "#fff";
-.red {
-    color: $red;
-}
+// Theme color
+$blue: #05d1dc;
+$indigo: #59ce46;
+$purple: #9d005d;
+$light: #fdfdfd;
+
+/* ff8dc8 */
+
+$primary: $purple;
+$secondary: #5b0303;
+// Body
+$body-bg: #ffffff;
+
+/* #fbfbfb */
+
+// Typography
+$font-family-base: 'Gothic A1',
+Nunito,
+sans-serif;
+$font-size-base: 0.875rem;
+$line-height-base: 1.6;
+$text-color: $primary;
+$link-color: #3d35a1;
+
+/*
+// Colors
+$blue: #3490dc;
+$indigo: #6574cd;
+$purple: #9561e2;
+$pink: #f66d9b;
+$red: #e3342f;
+$orange: #f6993f;
+$yellow: #ffed4a;
+$green: #38c172;
+$teal: #4dc0b5;
+$cyan: #6cb2eb;
+*/
+
+// Cards
+$card-spacer-x: 0.9375rem;
+$card-spacer-y: 0.625rem;
+$card-cap-bg: #fbfbfb;
+$card-border-color: #e8eced;
+// Borders
+$border-radius: .125rem;
+$border-radius-lg: .2rem;
+$border-radius-sm: .15rem;
+// Nav Pills
+$nav-pills-border-radius: 0;
