@@ -5,8 +5,7 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build",
-        "start": "next start",
-        "export": "npm run build && next build"
+        "start": "next start"
     },
     "dependencies": {
         "@zeit/next-css": "^1.0.1",
@@ -15,14 +14,19 @@
         "bootstrap": "^4.3.1",
         "element-react": "^1.4.34",
         "element-theme-default": "^1.4.13",
+        "js-cookie": "^2.2.1",
         "next": "^9.2.2",
         "next-element-react": "^1.4.24",
+        "next-redux-wrapper": "^5.0.0",
         "node-sass": "^4.13.1",
         "react": "16.9.0",
         "react-dom": "16.9.0",
+        "react-redux": "^7.2.0",
         "react-responsive-carousel": "^3.1.50",
         "react-star-ratings": "^2.3.0",
         "reactstrap": "^8.0.1",
+        "redux": "^4.0.5",
+        "redux-thunk": "^2.3.0",
         "semantic-ui-css": "^2.4.1",
         "semantic-ui-react": "^0.88.1",
         "url-loader": "^3.0.0",

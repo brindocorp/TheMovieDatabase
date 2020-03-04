@@ -13,7 +13,7 @@ const MovieCard = () => (
               height: "300px",
               "background-size": "auto",
               width: "-webkit-fill-available",
-              "background-repeat": "round",
+              backgroundRepeat: "round",
               margin: 0
             }}
           ></figure>

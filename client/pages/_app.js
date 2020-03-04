@@ -1,14 +1,33 @@
 import React, { useState } from "react";
-import App from "next/app";
+import { Provider } from "react-redux";
+import App, { Container } from "next/app";
+import withRedux from "next-redux-wrapper";
+import initStore from "../redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "../public/scss/app.scss";
-// import { Button } from "next-element-react/next";
-class MyApp extends App {
-  render() {
-    const { Component, pageProps } = this.props;
-    return <Component {...pageProps} />;
-  }
-}
 
-export default MyApp;
+export default withRedux(initStore, { debug: true })(
+  class MyApp extends App {
+    static async getInitialProps({ Component, ctx }) {
+      return {
+        pageProps: {
+          ...(Component.getInitialProps
+            ? await Component.getInitialProps(ctx)
+            : {})
+        }
+      };
+    }
+
+    render() {
+      const { Component, pageProps, store } = this.props;
+      return (
+        <div>
+          <Provider store={store}>
+            <Component {...pageProps} />
+          </Provider>
+        </div>
+      );
+    }
+  }
+);
