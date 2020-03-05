@@ -13,15 +13,17 @@ const StarComponent = ({ rate, size }) => {
 
   return (
     <div>
-      <StarRatings
-        rating={rate}
-        starRatedColor="red"
-        changeRating={changeRating}
-        numberOfStars={5}
-        name="rating"
-        starDimension={size}
-        starSpacing="5px"
-      />
+      <span>
+        <StarRatings
+          rating={rate}
+          starRatedColor="red"
+          changeRating={changeRating}
+          numberOfStars={5}
+          name="rating"
+          starDimension={size}
+          starSpacing="5px"
+        />
+      </span>
       <style jsx>{``}</style>
     </div>
   );

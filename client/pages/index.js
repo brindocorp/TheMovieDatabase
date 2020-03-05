@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import Head from "next/head";
-import Default from "../layout/Default";
+import Default from "./Default";
 import {
   TabContent,
   TabPane,
@@ -18,8 +18,9 @@ import classnames from "classnames";
 import { Button } from "semantic-ui-react";
 import StarComponent from "../components/StarComponent";
 import MovieCard from "../components/MovieCards";
+import { setAuth } from "../redux/actions/auth";
 
-const Home = () => {
+const Home = props => {
   const [activeTab, setActiveTab] = useState("1");
 
   const toggle = tab => {
@@ -41,7 +42,7 @@ const Home = () => {
                   {" "}
                   <p className="font-weight-bolder bg-title my-auto">
                     {" "}
-                    WRATH OF THE TITANS
+                    WRATH OF THE TITANS {props.data}
                   </p>
                   <div className="div text-white">
                     <span className="text-white small mr-2 bg-genre">
@@ -279,5 +280,9 @@ const Home = () => {
     </div>
   );
 };
+Home.getInitialProps = async ctx => {
+  // await ctx.store.dispatch(setAuth());
 
+  return { data: "data" };
+};
 export default Home;

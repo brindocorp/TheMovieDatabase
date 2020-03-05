@@ -1,10 +1,15 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import Link from "next/link";
 import validator from "validator";
 import { Button } from "semantic-ui-react";
+import { startLogin } from "../redux/actions/auth";
 
 const Default = props => {
-  const [email, setEmail] = useState("");
+  const [userData, setUserData] = useState({
+    email: "",
+    password: ""
+  });
 
   const [formError, setFormError] = useState({
     email: "",
@@ -22,25 +27,40 @@ const Default = props => {
     }
   };
   const onEmailChange = event => {
-    setEmail(event.target.value);
-    if (validator.isEmpty(email)) {
-      setFormError({
-        ...formError,
-        email: "empty"
-      });
-    } else if (validator.isEmail(email)) {
-    } else {
-      setFormError({});
-    }
-    //  else if (!validator.isEmail(data)) {
+    setUserData({ ...userData, email: event.target.value });
+    // if (validator.isEmpty(userData.email)) {
     //   setFormError({
     //     ...formError,
-    //     email: "field should be valid email address"
+    //     email: "empty"
     //   });
-
-    //   console.log(formError);
+    // } else if (validator.isEmail(userData.email)) {
+    // } else {
+    //   setFormError({});
     // }
   };
+
+  const onPasswordChange = event => {
+    setUserData({ ...userData, password: event.target.value });
+    // if (validator.isEmpty(userData.email)) {
+    //   setFormError({
+    //     ...formError,
+    //     email: "empty"
+    //   });
+    // } else if (validator.isEmail(email)) {
+    // } else {
+    //   setFormError({});
+    // }
+  };
+
+  function submitForm(event) {
+    event.preventDefault();
+    props
+      .startLogin(userData)
+      .then()
+      .catch(e => {
+        console.log(e);
+      });
+  }
 
   return (
     <span>
@@ -102,9 +122,8 @@ const Default = props => {
                       <div className="col">
                         <input
                           placeholder="Username or Email"
-                          value={email}
+                          value={userData.email}
                           onChange={onEmailChange}
-                          onBlur={onEmailBlur}
                           type="email"
                           className="form-control"
                         />
@@ -118,7 +137,8 @@ const Default = props => {
                     <div className="form-group">
                       <div className="col">
                         <input
-                          v-model="form.password"
+                          value={userData.password}
+                          onChange={onPasswordChange}
                           placeholder="Password"
                           type="password"
                           name="password"
@@ -160,6 +180,7 @@ const Default = props => {
                     <div className="form-group">
                       <div className="col">
                         <Button
+                          onClick={submitForm}
                           inverted
                           color="red"
                           className="btn btn-primary d-block w-100"
@@ -198,4 +219,7 @@ const Default = props => {
   );
 };
 
-export default Default;
+const mapDispatchToProps = {
+  startLogin
+};
+export default connect(undefined, mapDispatchToProps)(Default);

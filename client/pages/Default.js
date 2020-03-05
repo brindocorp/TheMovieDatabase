@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import { setAuth } from "../redux/actions/auth";
 // import Link from "next/link";
 
-import Footer from "../components/Footer";
+import Footer from "../components/footer";
 import Navbar from "../components/Navbar";
-const Default = props => {
+const Layout = props => {
   return (
     <span>
       <Navbar bg={props.bg ? true : false} />
@@ -16,9 +16,7 @@ const Default = props => {
     </span>
   );
 };
-Default.getInitialProps = async ctx => {
-  // let data = await console.log(ctx.store.dispatch(setAuth()));
-  // let ds = await store.dispatch(setAuth());
+Layout.getInitialProps = async ctx => {
   // console.log(ds);
   return { check: "check" };
 };
@@ -30,5 +28,5 @@ Default.getInitialProps = async ctx => {
 // const mapDispatchToProps = {
 //   setAuth
 // };
-export default Default;
+export default Layout;
 // export default connect()(Default);

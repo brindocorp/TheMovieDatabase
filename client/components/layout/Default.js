@@ -1,13 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import { setAuth } from "../redux/actions/auth";
+import { setAuth } from "../../redux/actions/auth";
 // import Link from "next/link";
 
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
+import Footer from "../../components/Footer";
+import Navbar from "../../components/Navbar";
 const Default = props => {
   return (
     <span>
+      <span className="text-white">{props.check}</span>
       <Navbar bg={props.bg ? true : false} />
 
       {props.children}
