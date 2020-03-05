@@ -6,6 +6,7 @@ import initStore from "../redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import "../public/scss/app.scss";
+import { setAuth } from "../redux/actions/auth";
 
 export default withRedux(initStore, { debug: true })(
   class MyApp extends App {
@@ -24,7 +25,7 @@ export default withRedux(initStore, { debug: true })(
       return (
         <div>
           <Provider store={store}>
-            <Component {...pageProps} />
+            <Component {...pageProps} store={store} />
           </Provider>
         </div>
       );
