@@ -1,5 +1,6 @@
 import fetch from "isomorphic-unfetch";
-import axios from "axios";
+import { getCookieFromServer, setCookie } from "../../utils/cookie";
+import Cookies from "js-cookie";
 
 export const login = auth => ({
   type: "LOGIN_USER",
@@ -11,7 +12,17 @@ export const auth = auth => ({
   auth
 });
 
+export const Token = token => ({
+  type: "SET_TOKEN",
+  token
+});
+export const setTokenA = token => {
+  return async dispatch => {
+    dispatch(token(token));
+  };
+};
 export const persistAuth = () => {
+  getCookieFromServer("movieBoxDatabase", Request);
   return async dispatch => {
     let header = new Headers({
       "Access-Control-Allow-Origin": "*",
@@ -24,28 +35,38 @@ export const persistAuth = () => {
       mode: "cors"
     });
     const json = await res.json();
-    console.log("setAuth", json);
-    await dispatch(auth(json));
+    // console.log("setAuth", json);
+    dispatch(auth(json));
     // return json;
   };
 };
 
 export const setAuth = token => {
-  console.log("sa", token);
+  // console.log("sa", token);
   return async dispatch => {
-    let header = new Headers({
-      "Access-Control-Allow-Origin": "*",
-      "Content-Type": "application/json",
-      Authorization: token
-    });
+    // let header = new Headers({
+    //   "Access-Control-Allow-Origin": "*",
+    //   "Content-Type": "application/json",
+    //   Authorization: token
+    // });
     const res = await fetch("http://localhost:4000/me", {
       method: "GET",
-      headers: header,
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+        Authorization: token
+      },
       mode: "cors"
     });
     const json = await res.json();
-    console.log("setAuth", json);
-    await dispatch(auth(json));
+    // console.log("setAuth", json);
+    // setCookie("movieBoxDatabase", token);
+    // console.log
+
+    dispatch(auth(json));
+    dispatch(Token(token));
+
+    // console.log("done");
     // return json;
   };
 };
@@ -73,6 +94,10 @@ export const startLogin = (userCredentials = {}) => {
       throw new Error(data.errors);
       //dispatch error
     } else {
+      setCookie("moviesBoxDatabase", dataResult.token);
+      // Cookies.set("moviesBoxDatabase", dataResult.token, {
+      //   expires: remember ? 365 : null
+      // });
       dispatch(setAuth(dataResult.token));
     }
   };

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { startRegister } from "../redux/actions/users";
 import Link from "next/link";
 import { Button } from "semantic-ui-react";
+import initialize from "../utils/initialize";
 
 const Default = props => {
   const [userData, setUserData] = useState({
@@ -182,7 +183,11 @@ const Default = props => {
   );
 };
 
+Default.getInitialProps = async ctx => {
+  initialize(ctx);
+};
 const mapDispatchToProps = {
   startRegister
 };
 export default connect(undefined, mapDispatchToProps)(Default);
+// export default Default;

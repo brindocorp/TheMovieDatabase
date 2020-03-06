@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Head from "next/head";
-import Default from "./Default";
+import Default from "../components/layout/Default";
+import initialize from "../utils/initialize";
+import { connect } from "react-redux";
+
+import { getCookieFromServer } from "../utils/cookie";
 import {
   TabContent,
   TabPane,
@@ -18,10 +22,14 @@ import classnames from "classnames";
 import { Button } from "semantic-ui-react";
 import StarComponent from "../components/StarComponent";
 import MovieCard from "../components/MovieCards";
-import { setAuth } from "../redux/actions/auth";
+import { setAuth, persistAuth } from "../redux/actions/auth";
 
 const Home = props => {
   const [activeTab, setActiveTab] = useState("1");
+  useEffect(() => {
+    console.log("setTokem", props.TokenData);
+    props.setAuthT(props.TokenData);
+  }, [props.TokenData]);
 
   const toggle = tab => {
     if (activeTab !== tab) setActiveTab(tab);
@@ -33,7 +41,7 @@ const Home = props => {
         <title>Home</title>
       </Head>
 
-      <Default>
+      <Default auth={props.userData}>
         <div className="bg-grad">
           <div className="container-fluid bg-image p-0 p-md-5 ">
             <div className="row px-3 mb-4 mt-5 d-flex">
@@ -42,7 +50,7 @@ const Home = props => {
                   {" "}
                   <p className="font-weight-bolder bg-title my-auto">
                     {" "}
-                    WRATH OF THE TITANS {props.data}
+                    WRATH OF THE TITANS
                   </p>
                   <div className="div text-white">
                     <span className="text-white small mr-2 bg-genre">
@@ -281,8 +289,20 @@ const Home = props => {
   );
 };
 Home.getInitialProps = async ctx => {
-  // await ctx.store.dispatch(setAuth());
+  let token = await getCookieFromServer("moviesBoxDatabase", ctx.req);
+  console.log("ini index;");
+  let state = await initialize(ctx);
 
-  return { data: "data" };
+  let user = ctx.store.getState().auth;
+  let tokenData = ctx.store.getState().token;
+
+  return { userData: user, TokenData: tokenData };
 };
-export default Home;
+const mapStateToProps = state => ({
+  user: state.auth._id,
+  token: state.token
+});
+const mapDispatchToProps = {
+  setAuthT: setAuth
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
