@@ -166,7 +166,7 @@ const Home = props => {
                         {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(value => {
                           return (
                             <div
-                              className="col-12 col-md-4 col-lg-4 my-1"
+                              className="col-12 col-md-4 col-lg-3 my-1"
                               key={value}
                             >
                               <MovieCard />
