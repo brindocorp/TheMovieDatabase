@@ -35,3 +35,9 @@ export const getCookieFromServer = (key, req) => {
 //     return cookie.split("=")[1];
 //   }
 // }
+
+export const removeCookie = key => {
+  if (process.browser) {
+    cookie.remove(key);
+  }
+};

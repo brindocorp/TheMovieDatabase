@@ -6,6 +6,8 @@ export const authReducer = (state = userDefaultState, action) => {
       if (action.auth && action.auth._id) {
         return { ...action.auth };
       } else return state;
+    case "LOGOUT_USER":
+      return {};
     default:
       return state;
   }

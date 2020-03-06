@@ -3,11 +3,12 @@ import { connect } from "react-redux";
 import Router from "next/router";
 import Link from "next/link";
 import validator from "validator";
-import { Button } from "semantic-ui-react";
+import { Button, Loader, Dimmer } from "semantic-ui-react";
 import { startLogin } from "../redux/actions/auth";
 import initialize from "../utils/initialize";
 
 const Default = props => {
+  const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState({
     email: "",
     password: ""
@@ -55,13 +56,20 @@ const Default = props => {
   };
 
   function submitForm(event) {
+    setLoading(true);
     event.preventDefault();
     props
       .startLogin(userData)
-      .then(() => {
-        Router.push("/");
+      .then(data => {
+        if (data) {
+          console.log(data);
+          Router.push("/");
+        } else {
+          setLoading(false);
+        }
       })
       .catch(e => {
+        setLoading(false);
         console.log(e);
       });
   }
@@ -159,7 +167,13 @@ const Default = props => {
                           color="red"
                           className="btn btn-primary d-block w-100"
                         >
-                          Login
+                          {loading ? (
+                            <Dimmer active>
+                              <Loader size="mini"></Loader>
+                            </Dimmer>
+                          ) : (
+                            "Login"
+                          )}
                         </Button>
                       </div>
                     </div>

@@ -1,10 +1,19 @@
 import fetch from "isomorphic-unfetch";
-import { getCookieFromServer, setCookie } from "../../utils/cookie";
+import {
+  getCookieFromServer,
+  setCookie,
+  removeCookie
+} from "../../utils/cookie";
 import Cookies from "js-cookie";
+// import Router from "next/router";
 
 export const login = auth => ({
   type: "LOGIN_USER",
   auth
+});
+
+export const logOut = () => ({
+  type: "LOGOUT_USER"
 });
 
 export const auth = auth => ({
@@ -61,16 +70,27 @@ export const setAuth = token => {
     const json = await res.json();
     // console.log("setAuth", json);
     // setCookie("movieBoxDatabase", token);
-    // console.log
-
-    dispatch(auth(json));
-    dispatch(Token(token));
+    console.log(json);
+    if (json.error) {
+      return false;
+    } else {
+      dispatch(auth(json));
+      dispatch(Token(token));
+      return true;
+    }
 
     // console.log("done");
     // return json;
   };
 };
 
+export const startLogOut = () => {
+  return dispatch => {
+    removeCookie("moviesBoxDatabase");
+    dispatch(logOut());
+    // Router.push("/signin");
+  };
+};
 export const startLogin = (userCredentials = {}) => {
   return async dispatch => {
     const { email, password } = userCredentials;
@@ -98,7 +118,10 @@ export const startLogin = (userCredentials = {}) => {
       // Cookies.set("moviesBoxDatabase", dataResult.token, {
       //   expires: remember ? 365 : null
       // });
-      dispatch(setAuth(dataResult.token));
+      let result = await dispatch(setAuth(dataResult.token));
+      if (result) {
+        return true;
+      } else return false;
     }
   };
 };

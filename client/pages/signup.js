@@ -6,6 +6,10 @@ import { Button } from "semantic-ui-react";
 import initialize from "../utils/initialize";
 
 const Default = props => {
+  useEffect(() => {
+    console.log("setTokem", props.TokenData);
+    props.setAuthT(props.TokenData);
+  }, [props.TokenData]);
   const [userData, setUserData] = useState({
     email: "",
     name: "",
