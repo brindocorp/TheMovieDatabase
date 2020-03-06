@@ -8,8 +8,7 @@ import Navbar from "../../components/Navbar";
 const Default = props => {
   return (
     <span>
-      <span className="text-white">{props.check}</span>
-      <Navbar bg={props.bg ? true : false} />
+      <Navbar bg={props.bg ? true : false} auth={props.auth} />
 
       {props.children}
       <Footer />

@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import Router from "next/router";
 import Link from "next/link";
 import validator from "validator";
 import { Button } from "semantic-ui-react";
 import { startLogin } from "../redux/actions/auth";
+import initialize from "../utils/initialize";
 
 const Default = props => {
   const [userData, setUserData] = useState({
@@ -56,7 +58,9 @@ const Default = props => {
     event.preventDefault();
     props
       .startLogin(userData)
-      .then()
+      .then(() => {
+        Router.push("/");
+      })
       .catch(e => {
         console.log(e);
       });
@@ -147,36 +151,6 @@ const Default = props => {
                       </div>
                     </div>
 
-                    <div className="form-group mb-2">
-                      <div className="col-12 text-center">
-                        <div className="form-switch">
-                          <label
-                            className="form-check-label switch small"
-                            htmlFor="remember"
-                          >
-                            <input
-                              className="form-check-input"
-                              type="checkbox"
-                              name="remember"
-                              id="remember"
-                            />
-                            <span className="slider round"></span>
-                          </label>
-                          <span>remember me</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <p className="text-center">
-                      <Link href="/">
-                        <a className="mr-1">
-                          <span className="mr-1"> Forgot your </span>
-                          <span className="text-primary mr-2">username or</span>
-                          <span className="text-primary mr-2">password</span>
-                        </a>
-                      </Link>
-                    </p>
-
                     <div className="form-group">
                       <div className="col">
                         <Button
@@ -219,7 +193,12 @@ const Default = props => {
   );
 };
 
+Default.getInitialProps = async ctx => {
+  console.log("signin page");
+  initialize(ctx);
+};
 const mapDispatchToProps = {
   startLogin
 };
+// export default Default;
 export default connect(undefined, mapDispatchToProps)(Default);
