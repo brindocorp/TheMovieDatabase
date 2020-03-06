@@ -32,7 +32,7 @@ const Nav = props => {
             </div>
           </Link>
           {(props.auth && props.auth._id) || props.user._id ? (
-            <div className="div d-flex text-white justify-content-between px-3 mx-3 n">
+            <div className="div d-flex text-white justify-content-between font-weight-bold px-3 mx-3 my-auto">
               <Dropdown text={props.auth.name || props.user.name}>
                 <Dropdown.Menu>
                   <Dropdown.Item onClick={logout} text="Log Out" />
