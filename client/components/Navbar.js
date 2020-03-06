@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import Link from "next/link";
-import { setAuth } from "../redux/actions/auth";
+import { setAuth, startLogOut } from "../redux/actions/auth";
 import { Button, Dropdown } from "semantic-ui-react";
 const background = {
   background: "blue"
@@ -12,6 +12,10 @@ const Nav = props => {
   //   console.log("setTokem", props.TokenData);
   //   props.setAuthT(props.TokenData);
   // }, [props.TokenData]);
+  const logout = () => {
+    props.LOGOUT();
+    window.location.href = "/";
+  };
 
   return (
     <div
@@ -31,7 +35,7 @@ const Nav = props => {
             <div className="div d-flex text-white justify-content-between px-3 mx-3 n">
               <Dropdown text={props.auth.name || props.user.name}>
                 <Dropdown.Menu>
-                  <Dropdown.Item text="Log Out" />
+                  <Dropdown.Item onClick={logout} text="Log Out" />
                 </Dropdown.Menu>
               </Dropdown>
             </div>
@@ -68,6 +72,7 @@ const mapStateToProps = state => ({
   token: state
 });
 const mapDispatchToProps = {
-  setAuthT: setAuth
+  setAuthT: setAuth,
+  LOGOUT: startLogOut
 };
 export default connect(mapStateToProps, mapDispatchToProps)(Nav);
