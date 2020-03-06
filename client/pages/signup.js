@@ -1,8 +1,9 @@
 import React, { useState } from "react";
+import Router from "next/router";
 import { connect } from "react-redux";
 import { startRegister } from "../redux/actions/users";
 import Link from "next/link";
-import { Button } from "semantic-ui-react";
+import { Button, Dimmer, Loader } from "semantic-ui-react";
 import initialize from "../utils/initialize";
 
 const Default = props => {
@@ -10,6 +11,7 @@ const Default = props => {
   //   console.log("setTokem", props.TokenData);
   //   props.setAuthT(props.TokenData);
   // }, [props.TokenData]);
+  const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState({
     email: "",
     name: "",
@@ -29,11 +31,20 @@ const Default = props => {
   };
 
   function submitForm(event) {
+    setLoading(true);
     event.preventDefault();
     props
       .startRegister(userData)
-      .then()
+      .then(data => {
+        if (data) {
+          console.log(data);
+          Router.push("/");
+        } else {
+          setLoading(false);
+        }
+      })
       .catch(e => {
+        setLoading(false);
         console.log(e);
       });
   }
@@ -154,7 +165,13 @@ const Default = props => {
                           color="red"
                           className="w-100"
                         >
-                          Sign Up
+                          {loading ? (
+                            <Dimmer active>
+                              <Loader size="mini"></Loader>
+                            </Dimmer>
+                          ) : (
+                            "Sign Up"
+                          )}
                         </Button>
                       </div>
                     </div>
