@@ -1,8 +1,8 @@
 // Create express app
-var express = require("express");
-var bodyParser = require("body-parser");
-const session = require("express-session");
-const cookieParser = require("cookie-parser");
+var express = require('express');
+var bodyParser = require('body-parser');
+const session = require('express-session');
+const cookieParser = require('cookie-parser');
 express.application.prefix = express.Router.prefix = function(path, configure) {
   var router = express.Router();
   this.use(path, router);
@@ -10,18 +10,18 @@ express.application.prefix = express.Router.prefix = function(path, configure) {
   return router;
 };
 var app = express();
-const mongoose = require("mongoose");
-const MongoStore = require("connect-mongo")(session);
-const db = require("./database/db");
+const mongoose = require('mongoose');
+const MongoStore = require('connect-mongo')(session);
+const db = require('./database/db');
 const {
   PORT,
   NODE_ENV,
   SESS_NAME,
   SESS_LIFETIME,
   SESS_SECRET
-} = require("./config/app");
+} = require('./config/app');
 
-const IN_PROD = NODE_ENV === "production";
+const IN_PROD = NODE_ENV === 'production';
 
 // parse application/x-www-form-urlencoded
 // app.use(bodyParser.urlencoded({ extended: false }))
@@ -51,11 +51,11 @@ var HTTP_PORT = PORT || 4000;
 
 // Start server
 app.listen(HTTP_PORT, () => {
-  console.log("Server running now on port %PORT%".replace("%PORT%", HTTP_PORT));
+  console.log('Server running now on port %PORT%'.replace('%PORT%', HTTP_PORT));
 });
 
 // Route file
-require("./routes/index.js")(app);
+require('./routes/index.js')(app);
 
 // Default response for any other request
 app.use(function(req, res) {
