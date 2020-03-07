@@ -1,5 +1,5 @@
 import fetch from "isomorphic-unfetch";
-
+import { setAuth } from "./auth";
 export const register = user => ({
   type: "REGISTER_USER",
   user
@@ -38,11 +38,14 @@ export const startRegister = (userData = {}) => {
     });
     const dataResult = await data.json();
 
-    if (data.errors) {
-      throw new Error(data.errors);
-      //dispatch error
+    if (dataResult.errors) {
+      // throw new Error(data.errors);
+      // console.log("dispatch", data);
+      return false;
     } else {
       dispatch(register(dataResult));
+      dispatch(setAuth(dataResult.token));
+      return true;
     }
   };
 };

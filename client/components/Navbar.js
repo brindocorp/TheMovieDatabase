@@ -14,14 +14,14 @@ const Nav = props => {
   // }, [props.TokenData]);
   const logout = () => {
     props.LOGOUT();
-    window.location.href = "/";
+    window.location.href = "/signin";
   };
 
   return (
     <div
       className="container-fluid position-absolute zIndex my-auto"
       style={
-        props.bg ? { background: "#889590" } : { background: "transparent" }
+        props.bg ? { background: "#ca5666" } : { background: "transparent" }
       }
     >
       <div className="row ">
@@ -32,7 +32,7 @@ const Nav = props => {
             </div>
           </Link>
           {(props.auth && props.auth._id) || props.user._id ? (
-            <div className="div d-flex text-white justify-content-between px-3 mx-3 n">
+            <div className="div d-flex text-white justify-content-between font-weight-bold px-3 mx-3 my-auto">
               <Dropdown text={props.auth.name || props.user.name}>
                 <Dropdown.Menu>
                   <Dropdown.Item onClick={logout} text="Log Out" />

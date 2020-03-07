@@ -104,13 +104,13 @@ const Home = props => {
         {
           //section to display movies
         }
-        <section className="section-trend">
-          <div className="container ">
+        <section className="bg-white">
+          <div className="container-fluid">
             <div className="row ">
               <div className="col">
                 <Nav tabs className="d-flex justify-content-between pt-3">
-                  <template className="d-flex ">
-                    <NavItem>
+                  <template className="d-flex px-5 px-5">
+                    <NavItem className="">
                       <NavLink
                         className={classnames({ active: activeTab === "1" })}
                         onClick={() => {
@@ -161,12 +161,12 @@ const Home = props => {
                 </Nav>
                 <TabContent activeTab={activeTab}>
                   <TabPane tabId="1">
-                    <div className="container-fluid py-5">
+                    <div className="container-fluid px-5 py-5">
                       <div className="row">
                         {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(value => {
                           return (
                             <div
-                              className="col-12 col-md-4 col-lg-4 my-1"
+                              className="col-12 col-md-4 col-lg-3 my-1"
                               key={value}
                             >
                               <MovieCard />
