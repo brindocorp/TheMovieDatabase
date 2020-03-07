@@ -14,14 +14,14 @@ const Nav = props => {
   // }, [props.TokenData]);
   const logout = () => {
     props.LOGOUT();
-    window.location.href = "/";
+    window.location.href = "/signin";
   };
 
   return (
     <div
       className="container-fluid position-absolute zIndex my-auto"
       style={
-        props.bg ? { background: "#889590" } : { background: "transparent" }
+        props.bg ? { background: "#ca5666" } : { background: "transparent" }
       }
     >
       <div className="row ">

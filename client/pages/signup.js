@@ -3,14 +3,21 @@ import Router from "next/router";
 import { connect } from "react-redux";
 import { startRegister } from "../redux/actions/users";
 import Link from "next/link";
-import { Button, Dimmer, Loader } from "semantic-ui-react";
+import { Button, Dimmer, Loader, Modal } from "semantic-ui-react";
 import initialize from "../utils/initialize";
 
 const Default = props => {
+  const [show, setShow] = useState({
+    size: "",
+    open: false
+  });
+  let [close, setClose] = useState(false);
   // useEffect(() => {
   //   console.log("setTokem", props.TokenData);
   //   props.setAuthT(props.TokenData);
   // }, [props.TokenData]);
+  const showA = size => setShow({ size, open: true });
+  const closeA = () => setShow({ ...show, open: false });
   const [loading, setLoading] = useState(false);
   const [userData, setUserData] = useState({
     email: "",
@@ -37,13 +44,17 @@ const Default = props => {
       .startRegister(userData)
       .then(data => {
         if (data) {
-          console.log(data);
+          showA("mini");
           Router.push("/");
         } else {
+          // showA("mini");
+          console.log("data", data);
+
           setLoading(false);
         }
       })
       .catch(e => {
+        // showA("mini");
         setLoading(false);
         console.log(e);
       });
@@ -53,6 +64,12 @@ const Default = props => {
     <span>
       <div className="container-fluid">
         <div className="row">
+          <Modal size={show.size} open={show.open} onClose={closeA}>
+            <Modal.Header>Success</Modal.Header>
+            <Modal.Content>
+              <p>Account created</p>
+            </Modal.Content>
+          </Modal>
           <div className="col-lg-6 d-none d-lg-block d-md-block p-0">
             <div className="container-fluid bg-login-grad p-0 m-0 h-100">
               <div className="d-flex flex-column bg-url justify-content-around h-100">
