@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { setAuth } from '../../redux/actions/auth';
 // import Link from "next/link";
 
-import Footer from '../Footer';
 import Navbar from '../Navbar';
+import Footer from '../footer';
 const Default = props => {
   return (
     <span>
