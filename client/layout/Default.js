@@ -1,10 +1,10 @@
-import React from "react";
-import { connect } from "react-redux";
-import { setAuth } from "../redux/actions/auth";
+import React from 'react';
+import { connect } from 'react-redux';
+import { setAuth } from '../redux/actions/auth';
 // import Link from "next/link";
 
-import Footer from "../components/Footer";
-import Navbar from "../components/Navbar";
+import Footer from '../components/Footer';
+import Navbar from '../components/Navbar';
 const Default = props => {
   return (
     <span>
@@ -20,7 +20,7 @@ Default.getInitialProps = async ctx => {
   // let data = await console.log(ctx.store.dispatch(setAuth()));
   // let ds = await store.dispatch(setAuth());
   // console.log(ds);
-  return { check: "check" };
+  return { check: 'check' };
 };
 
 // const mapStateToProps = state => {
