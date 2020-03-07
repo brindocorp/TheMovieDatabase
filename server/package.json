@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "jest"
+    "test": "jest",
+    "start-lambda": "netlify-lambda serve .",
+    "build-lambda": "netlify-labmda build ."
   },
   "author": "BeardKoda",
   "license": "ISC",

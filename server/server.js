@@ -3,6 +3,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
+const serveless = require('serverless-http');
+
 express.application.prefix = express.Router.prefix = function(path, configure) {
   var router = express.Router();
   this.use(path, router);
@@ -46,18 +48,24 @@ app.use(
   })
 );
 
-// Server port
-var HTTP_PORT = PORT || 4000;
-
-// Start server
-app.listen(HTTP_PORT, () => {
-  console.log('Server running now on port %PORT%'.replace('%PORT%', HTTP_PORT));
-});
-
 // Route file
-require('./routes/index.js')(app);
+const router = require('./routes/index.js')(app);
 
 // Default response for any other request
 app.use(function(req, res) {
   res.status(404);
 });
+
+// path must route to lambda
+app.use('/.netlify/functions/server', router);
+
+// running the app on netlify serverless
+module.exports.handler = serveless(app);
+
+// // Server port
+// var HTTP_PORT = PORT || 4000;
+
+// // Start server
+// app.listen(HTTP_PORT, () => {
+//   console.log('Server running now on port %PORT%'.replace('%PORT%', HTTP_PORT));
+// });
