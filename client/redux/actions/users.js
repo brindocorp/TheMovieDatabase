@@ -38,8 +38,9 @@ export const startRegister = (userData = {}) => {
     });
     const dataResult = await data.json();
 
-    if (data.errors) {
+    if (dataResult.errors) {
       // throw new Error(data.errors);
+      // console.log("dispatch", data);
       return false;
     } else {
       dispatch(register(dataResult));

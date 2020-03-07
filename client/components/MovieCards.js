@@ -36,9 +36,10 @@ const MovieCard = () => (
     <style jsx>{`
       .box {
         border-radius: 5px !important;
-        box-shadow: 0 17px 50px 0 rgba(var(--shadow-rgb), 0.19),
-          0 12px 15px 0 rgba(var(--shadow-rgb), 0.24) !important;
+        // box-shadow: 0 17px 50px 0 rgba(var(--shadow-rgb), 0.19),
+        //   0 12px 15px 0 rgba(var(--shadow-rgb), 0.24) !important;
         background: #fff !important;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
       }
       .bg-cover {
       }
